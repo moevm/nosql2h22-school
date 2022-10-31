@@ -1,9 +1,3 @@
-select *
-from eats_receipts.eats_receipts.send_receipt_spirit_check sp
-         left join eats_receipts.eats_receipts.receipts_info rc on sp.document_id = rc.document_id
-where sp.created_at > '2022-10-29' and rc.originator = 'delivery-club'
-   or sp.originator = 'delivery-club-revenue';
-
 CREATE TYPE USER_TYPE AS ENUM (
     'student', 'parent', 'admin', 'teacher'
     );
