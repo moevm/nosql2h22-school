@@ -107,7 +107,7 @@ class Controller:
                 'work': schedule['work']
             }
             subject = self.subjects.find_one({'_id': schedule['subject_id']})
-            one_mark = dict(one_mark, **subject['name'])
+            one_mark = dict(one_mark, **{'subject_name':subject['name']})
             result.append(one_mark)
         return result
 
