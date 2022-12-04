@@ -68,7 +68,7 @@ class Controller:
         db_table = self.get_table(table)
         db_table.drop()
         if data:
-           db_table.insert_many(data, ordered=False)
+            db_table.insert_many(data, ordered=False)
 
     def add_subject(self, teacher_id:  ObjectId, name: str) -> ObjectId:
         _subject = {'teacher_id': teacher_id, 'name': name}
@@ -107,7 +107,7 @@ class Controller:
                 'work': schedule['work']
             }
             subject = self.subjects.find_one({'_id': schedule['subject_id']})
-            one_mark = dict(one_mark, **{'subject_name':subject['name']})
+            one_mark = dict(one_mark, **{'subject_name': subject['name']})
             result.append(one_mark)
         return result
 
