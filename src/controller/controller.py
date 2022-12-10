@@ -25,7 +25,7 @@ class Controller:
     def auth_user(self, username: str, password: str) -> bool:
         user = {'user_name': username, 'password': hashlib.md5(
             password.encode('utf-8')).hexdigest()}
-        return self.user.find_one(user)
+        return self.users.find_one(user)
 
     def create_class(self, number: int, symbol: str) -> ObjectId:
         _class = {'number': number, 'symbol': symbol, 'students': []}
