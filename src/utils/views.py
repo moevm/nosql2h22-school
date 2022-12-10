@@ -14,6 +14,8 @@ class TemplateView(View):
     controller = Controller()
 
     def dispatch_request(self):
+        if not self.user_have_access():
+            return Response(status=403, response=json.dumps({'error': 'Forbidden'}))
         if request.method == "POST":
             return self.post()
         elif request.method == "GET":
@@ -26,6 +28,20 @@ class TemplateView(View):
 
     def post(self):
         pass
+
+    def user_have_access(self):
+        username, password = request.headers.get('Authorization').split(':')
+        user = self.controller.auth_user(username=username, password=password)
+        post_allowed_types = ['teacher', 'admin']
+        if not user:
+            return False
+        if user['type'] != 'teacher' and request.method == 'POST':
+            return False
+        if request.path == '/user' and user['type'] not in post_allowed_types:
+            return False
+        if request.path == '/class' and user['type'] not in post_allowed_types:
+            return False
+        return True
 
 
 class UserView(TemplateView):
