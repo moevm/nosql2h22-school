@@ -1,5 +1,7 @@
 from pymongo import MongoClient
 
-client = MongoClient(port=27017)
+from utils import config
+
+client = MongoClient(port=config.MONGO_PORT)
 db = client.school_management
 connection = db.test_connection
