@@ -16,10 +16,10 @@ class Controller:
         self.journal = db.journal
 
     def create_user(self, type: UserType, username: str, password: str, personal_info: dict, parent_id: Optional[str] = None):
-        user = dict(personal_info, {'user_name': username, 'password': hashlib.md5(
-            password.encode('utf-8')).hexdigest()}, {'type': type})
+        user = dict(personal_info, **{'user_name': username, 'password': hashlib.md5(
+            password.encode('utf-8')).hexdigest()}, **{'type': str(type)})
         if parent_id:
-            user = dict(user, {'parent_id': parent_id})
+            user = dict(user, **{'parent_id': parent_id})
         self.users.insert_one(user)
 
     def auth_user(self, username: str, password: str) -> bool:
@@ -83,7 +83,7 @@ class Controller:
 
     def get_schedule(self, student_id: ObjectId):
         _class = self.classes.find_one(
-            {'students': {'$in': [ObjectId('638cce7995ce2b79bd93f256')]}})
+            {'students': {'$in': [student_id]}})
         class_id = _class['_id']
 
         result = list()
