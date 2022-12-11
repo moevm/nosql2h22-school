@@ -1,5 +1,6 @@
 from flask import Flask
 
+from scripts import add_users
 from utils import views, config
 
 app = Flask(__name__)
@@ -11,4 +12,5 @@ app.add_url_rule('/subject', view_func=views.SubjectView.as_view('subject'), met
 app.add_url_rule('/journal', view_func=views.JournalView.as_view('journal'), methods=views.JournalView.methods)
 
 if __name__ == '__main__':
+    add_users.seed_users()
     app.run(port=config.APP_PORT, host=config.APP_HOST)

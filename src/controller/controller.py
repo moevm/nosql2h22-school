@@ -16,8 +16,10 @@ class Controller:
         self.journal = db.journal
 
     def create_user(self, type: UserType, username: str, password: str, personal_info: dict, parent_id: Optional[str] = None):
-        user = dict(personal_info, **{'user_name': username, 'password': hashlib.md5(
-            password.encode('utf-8')).hexdigest()}, **{'type': str(type.value)})
+        user = {
+            **personal_info,
+            **{'user_name': username, 'password': hashlib.md5(password.encode('utf-8')).hexdigest()},
+            **{'type': str(type.value) if isinstance(type, UserType) else str(type)}}
         if parent_id:
             user = dict(user, **{'parent_id': parent_id})
         self.users.insert_one(user)
@@ -82,12 +84,11 @@ class Controller:
         return _id.inserted_id
 
     def get_schedule(self, student_id: ObjectId):
-        _class = self.classes.find_one(
-            {'students': {'$in': [student_id]}})
+        _class = self.classes.find_one({'students': {'$in': [student_id]}})
         class_id = _class['_id']
 
         result = list()
-        for schedule in self.schedule.find({'class_id': {class_id}}):
+        for schedule in self.schedule.find({'class_id': class_id}):
             one_day = {
                 'weekday': schedule['weekday'],
                 'subjects': [],

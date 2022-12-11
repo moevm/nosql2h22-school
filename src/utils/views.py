@@ -71,7 +71,7 @@ class ScheduleView(TemplateView):
         return Response(
             status=200,
             response=json_util.dumps(
-                self.controller.get_schedule(request.args.get('student_id'))
+                self.controller.get_schedule(ObjectId(request.args.get('student_id')))
             )
         )
 
