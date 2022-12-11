@@ -17,7 +17,7 @@ class Controller:
 
     def create_user(self, type: UserType, username: str, password: str, personal_info: dict, parent_id: Optional[str] = None):
         user = dict(personal_info, **{'user_name': username, 'password': hashlib.md5(
-            password.encode('utf-8')).hexdigest()}, **{'type': str(type)})
+            password.encode('utf-8')).hexdigest()}, **{'type': str(type.value)})
         if parent_id:
             user = dict(user, **{'parent_id': parent_id})
         self.users.insert_one(user)
