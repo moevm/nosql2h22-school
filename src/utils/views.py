@@ -33,7 +33,6 @@ class TemplateView(View):
         username, password = request.headers.get('Authorization').split(':')
         user = self.controller.auth_user(username=username, password=password)
         post_allowed_types = ['teacher', 'admin']
-        print(user)
         if user['type'] == 'admin':
             return True
         if not user:
