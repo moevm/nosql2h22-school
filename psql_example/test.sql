@@ -58,20 +58,20 @@ create table UserInClass
 );
 
 
--- Вход в систему
+
 select *
 from Users
 where password = 'test_password'
   and username = 'test_username';
 
--- Просмотр дневника
+
 select *
 from (select * from Journal where user_id = 1) jr
          left join (select * from Subject) sb
                    on jr.subject_id = sb.id;
 
 
--- Просмотр расписания
+
 select *
 from (select class_id from UserInClass where user_id = 1) uic
          left join (select * from Schedules) sch
@@ -79,17 +79,17 @@ from (select class_id from UserInClass where user_id = 1) uic
          left join (select id, name from Subject) sb
                    on sch.subject_id = sb.id;
 
--- Выставление оценок
+
 update Journal
 set mark = '5'
 where id = 1;
 
--- Создание работы для учеников
+    
 INSERT INTO Journal
     (user_id, subject_id, type, date)
 VALUES (1, 1, 'к/р', '2022-10-13 19:42:11.128204 +00:00');
 
--- Добавление класса
+
 INSERT INTO Users
     (name, surname, patronymic, username, password, parent_id, type)
 VALUES ('Igor', 'Ivanov', 'Ivanovich', 'IgorCool', '123456', NULL, 'student');
