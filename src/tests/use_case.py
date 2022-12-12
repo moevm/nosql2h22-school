@@ -36,8 +36,6 @@ class UseCase:
                 "type": "student",
             }
         )
-        # teacher = self.user.find_one({'type': 'teacher'})
-        # student = self.user.find_one({'type': 'student'})
         self.subjects.insert_one(
             {"name": "математика", "teacher_id": teacher.get("_id")}
         )
