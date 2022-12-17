@@ -38,18 +38,16 @@ function Login({ setToken }) {
 
     return (
         <div className="login-wrapper">
-            <h1>Please Log In</h1>
+            <h1>Вход в систему</h1>
             <form onSubmit={handleSubmit}>
                 <label>
-                    <p>Username</p>
-                    <input type="text" onChange={e => setUserName(e.target.value)} />
+                    <input type="text" className="login-input" placeholder="username" onChange={e => setUserName(e.target.value)} />
                 </label>
                 <label>
-                    <p>Password</p>
-                    <input type="password" onChange={e => setPassword(e.target.value)} />
+                    <input type="password" className="login-input" placeholder="password" onChange={e => setPassword(e.target.value)} />
                 </label>
                 <div>
-                    <button type="submit">Submit</button>
+                    <button type="submit" className="login-button">Войти</button>
                 </div>
                 <div>
                     {error && error["hasError"] && <p>
