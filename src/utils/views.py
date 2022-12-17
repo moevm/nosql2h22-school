@@ -25,19 +25,27 @@ class TemplateView(View):
         else:
             return Response(status=400,
                             response=json.dumps({'error': 'Bad request'
-                            }))
+                                                 }))
+
+    def __init__(self):
+        self.need_auth = True
 
     def get(self):
-        pass
+        return Response(status=400, response=json.dumps({'error': 'Bad request'
+                                                         }))
 
     def post(self):
-        pass
+        return Response(status=400, response=json.dumps({'error': 'Bad request'
+                                                         }))
 
     def user_have_access(self):
+        if not self.need_auth:
+            return True
+
         (username, password) = request.headers.get('Authorization'
-                ).split(':')
+                                                   ).split(':')
         user = self.controller.auth_user(username=username,
-                password=password)
+                                         password=password)
         post_allowed_types = ['teacher', 'admin']
         if user['type'] == 'admin':
             return True
@@ -46,10 +54,10 @@ class TemplateView(View):
         if user['type'] != 'teacher' and request.method == 'POST':
             return False
         if request.path == '/user' and user['type'] \
-            not in post_allowed_types:
+                not in post_allowed_types:
             return False
         if request.path == '/class' and user['type'] \
-            not in post_allowed_types:
+                not in post_allowed_types:
             return False
         return True
 
@@ -64,6 +72,20 @@ class UserView(TemplateView):
         self.controller.create_user(**request.json)
         return Response(status=200,
                         response=json_util.dumps({'ok': True}))
+
+
+class LoginView(TemplateView):
+    def __init__(self):
+        self.need_auth = False
+
+    def post(self):
+        user = self.controller.auth_user(username=request.json["username"],
+                                         password=request.json["password"])
+        if user:
+            return Response(status=200,
+                            response=json_util.dumps({'token':request.json["username"]+':'+request.json["password"]}))
+        else:
+            return Response(status=404, response=json.dumps({'error': 'User is not found'}))
 
 
 class ClassView(TemplateView):
@@ -85,7 +107,7 @@ class ScheduleView(TemplateView):
     def get(self):
         return Response(status=200,
                         response=json_util.dumps(self.controller.get_schedule(ObjectId(request.args.get('student_id'
-                        )))))
+                                                                                                        )))))
 
 
 class SubjectView(TemplateView):
@@ -97,7 +119,7 @@ class SubjectView(TemplateView):
     def post(self):
         response = \
             self.controller.add_subject(teacher_id=ObjectId(request.json['teacher_id'
-                ]), name=request.json['name'])
+                                                                         ]), name=request.json['name'])
         return Response(status=200, response=json_util.dumps(response))
 
 
@@ -110,6 +132,6 @@ class JournalView(TemplateView):
     def post(self):
         response = \
             self.controller.add_mark(student_id=ObjectId(request.json['student_id'
-                ]), subject_id=ObjectId(request.json['subject_id']),
-                mark=request.json['mark'], work=request.json['work'])
+                                                                      ]), subject_id=ObjectId(request.json['subject_id']),
+                                     mark=request.json['mark'], work=request.json['work'])
         return Response(status=200, response=json_util.dumps(response))
