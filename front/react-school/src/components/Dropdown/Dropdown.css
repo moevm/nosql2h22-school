@@ -1,0 +1,6 @@
+.menu{
+    visibility: collapse;
+}
+.menu_visible{
+    visibility: visible;
+}

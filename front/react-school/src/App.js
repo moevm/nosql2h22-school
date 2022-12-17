@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Test from './components/Test/Test.js'
 import Login from './components/Login/Login.js'
 import useToken from './components/Login/useToken';
+import Admin from './components/Admin/Admin'
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Test />} />
+        <Route path='/admin' element={<Admin />} />
       </Routes>
     </BrowserRouter>
   );

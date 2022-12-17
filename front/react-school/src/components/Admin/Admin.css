@@ -1,0 +1,11 @@
+.admin-button {
+    height: 80px;
+    width: 285px;
+    color:rgb(203, 8, 8);
+    background: #f0ad4e;
+    border: 0;
+    border-radius: 5px;
+    color: #fff;
+    padding: 8px 16px;
+    font-size: 16px;
+}
