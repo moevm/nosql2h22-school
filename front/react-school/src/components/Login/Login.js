@@ -11,7 +11,9 @@ async function loginUser(credentials, setError) {
         body: JSON.stringify(credentials)
     }).then(res => {
         if (res.status === 404) {
+            console.log("error")
             setError({ hasError: true })
+            return {};
         }
         setError({ hasError: false })
         return res.json()
