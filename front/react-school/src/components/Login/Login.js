@@ -10,7 +10,7 @@ async function loginUser(credentials, setError) {
         },
         body: JSON.stringify(credentials)
     }).then(res => {
-        if (res.status == 404) {
+        if (res.status === 404) {
             setError({ hasError: true })
         }
         setError({ hasError: false })
