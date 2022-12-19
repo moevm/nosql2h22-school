@@ -5,3 +5,9 @@
 
 ### Прототип “Хранение и представление”
 [Демонстрация работы](https://drive.google.com/file/d/1aID7Tn426keUeOXG68FSSRYFE71Z6MqP/view?usp=share_link)
+
+# Данные для входа:  
+Учитель - teacher:teacher  
+Родитель - parent:parent  
+Админ - admin:admin  
+Ученик - student:student  

@@ -3,7 +3,7 @@ import React from 'react';
 const Tables = [
     {
         value:'users', 
-        label:'Студенты'
+        label:'Пользователи'
     },
     {
         value:'classes',

@@ -10,6 +10,9 @@ import Admin from './components/Admin/Admin'
 import Users from "./components/Pages/Users";
 import Classes from "./components/Pages/Classes"
 import Schedule from './components/Pages/Schedule';
+import Subjects from "./components/Pages/Subjects";
+import Journal from "./components/Pages/Journal";
+
 
 function App() {
   const { token, setToken } = useToken();
@@ -23,8 +26,8 @@ function App() {
         <Route path='/users' element={<Users />} />
         <Route path='/classes' element={<Classes />} />
         <Route path='/schedule' element={<Schedule />} />
-        <Route path='/subjects' element={<Admin />} />
-        <Route path='/journal' element={<Admin />} />
+        <Route path='/subjects' element={<Subjects />} />
+        <Route path='/journal' element={<Journal />} />
         <Route path='/admin' element={<Admin />} />
       </Routes>
     </BrowserRouter>
