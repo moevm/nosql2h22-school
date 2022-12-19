@@ -8,7 +8,7 @@ const Back = {
     return JSON.parse(sessionStorage.getItem('token'))
   },
 
-  makeRequest: async (method, url, data=null) => {
+  makeRequest: async (method, url, data=null, query_params=null) => {
     const auth_token = await Back.getToken()
     let options = {
       method: method,
@@ -24,6 +24,9 @@ const Back = {
     }
     if (data) {
       options.body = JSON.stringify(data)
+    }
+    if(query_params){
+
     }
     const response = await fetch(urlJoin(Back.base_api_url, url), options);
     if (!response.ok) {
@@ -47,11 +50,7 @@ const Back = {
   addClass: async (class_data) => {
     return await Back.makeRequest('POST', '/class', class_data)
   },
-  getSchedule: async () => {
-    return await Back.makeRequest('GET', '/schedule')
-  },
-
-  addSchedule: async (schedule_data) => {
+  getSchedule: async (schedule_data) => {
     return await Back.makeRequest('POST', '/schedule', schedule_data)
   }
 }

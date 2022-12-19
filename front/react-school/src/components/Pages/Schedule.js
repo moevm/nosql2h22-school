@@ -20,12 +20,12 @@ class Schedule extends Component {
     async componentDidMount() {
         const users = this.formatUsers(await Back.getUsers());
         const selected = users[0];
-        const data = await Back.getSchedule(this.state.users[0]);
+        const data = await Back.getSchedule(users[0].value);
         console.log(selected)
 
         this.setState({
             users: users,
-            selected: this.state.users[0],
+            selected: users[0],
             data: data
         })
         console.log(this.state.selected)
@@ -58,7 +58,7 @@ class Schedule extends Component {
 
     render() {
 
-        const headers = ['_id', 'number', 'symbol', 'students']
+        const headers = ['_id', 'weekday', 'subject']
         return (
             <>
                 <div style={{ display: 'flex', justifyContent: 'center', margin: '40px', flexDirection: 'column' }}>
@@ -83,14 +83,14 @@ class Schedule extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {
+                            {   
                                 this.state.data.map((user) => {
+                                    console.log('test')
                                     return (
                                         <tr>
-                                            <td>{user['_id']['$oid']}</td>
-                                            <td>{user.number}</td>
-                                            <td>{user.symbol}</td>
-                                            <td>{user.students}</td>
+                                            <td>{user['_id']}</td>
+                                            <td>{user.weekday}</td>
+                                            <td>{user.subject}</td>
                                         </tr>
                                     )
                                 })
@@ -150,27 +150,7 @@ class Schedule extends Component {
                             </tr>
                         </tbody>
                     </table>
-                    <button
-                        hidden={this.state.insert_mode === true}
-                        className="btn btn-block btn-primary"
-                        onClick={async () => {
-                            await this.setState({
-                                insert_mode: true
-                            })
-                        }}
-                    >
-                        Добавить
-                    </button>
-                    <button
-                        hidden={this.state.insert_mode === false}
-                        className="btn btn-block btn-primary"
-                        onClick={async () => {
-                            await Back.addSchedule(this.state.new_row)
-                            window.location.reload()
-                        }}
-                    >
-                        Сохранить
-                    </button>
+                    
                 </div>
             </>
         )

@@ -29,7 +29,7 @@ class Controller:
             password.encode('utf-8')).hexdigest()}
         return self.users.find_one(user)
 
-    def create_class(self, number: int, symbol: str, students:list=[]) -> ObjectId:
+    def create_class(self, number: int, symbol: str, students: list = []) -> ObjectId:
         _class = {'number': number, 'symbol': symbol, 'students': students}
         _id = self.classes.insert_one(_class)
         return _id.inserted_id
@@ -84,6 +84,8 @@ class Controller:
         return _id.inserted_id
 
     def get_schedule(self, student_id: ObjectId):
+        # mock
+        return [{'_id': 1234, 'weekday': 'Понедельник', 'subject': 'бд'}, {'_id': 1234, 'weekday': 'Вторник', 'subject': 'бд'}, {'_id': 1234, 'weekday': 'Среда', 'subject': 'бд'}, {'_id': 1234, 'weekday': 'Четверг', 'subject': 'бд'}]
         _class = self.classes.find_one({'students': {'$in': [student_id]}})
         class_id = _class['_id']
 

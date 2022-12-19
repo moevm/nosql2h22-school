@@ -43,12 +43,24 @@ class Classes extends Component {
             <tbody>
             {
               this.state.data.map((user) => {
+
+                let users = ""
+                if (user['students'] !== []){
+                    console.log(user)
+                    users +='['
+                    Array.prototype.forEach.call(user['students'], student => {
+                        if(student['$oid'] !== undefined){
+                            users +=(student['$oid'])
+                        }
+                      });
+                    }
+                    users +=']'
                 return (
                   <tr>
                     <td>{user['_id']['$oid']}</td>
                     <td>{user.number}</td>
                     <td>{user.symbol}</td>
-                    <td>{user.students}</td>
+                    <td>{users}</td>
                   </tr>
                 )
               })
@@ -82,23 +94,6 @@ class Classes extends Component {
                         new_row: {
                           ...this.state.new_row,
                           symbol: e.target.value
-                        }
-                      })
-                    }
-                  }
-                />
-              </td>
-              <td>
-                <input
-                  required={true}
-                  className="form-control"
-                  type="text"
-                  onChange={
-                    async (e) => {
-                      await this.setState({
-                        new_row: {
-                          ...this.state.new_row,
-                          students: e.target.value
                         }
                       })
                     }

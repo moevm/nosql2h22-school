@@ -83,7 +83,7 @@ class LoginView(TemplateView):
                                          password=request.json["password"])
         if user:
             return Response(status=200,
-                            response=json_util.dumps({'token':request.json["username"]+':'+request.json["password"]}))
+                            response=json_util.dumps({'token': request.json["username"]+':'+request.json["password"]}))
         else:
             return Response(status=404, response=json.dumps({'error': 'User is not found'}))
 
@@ -102,12 +102,11 @@ class ClassView(TemplateView):
 
 class ScheduleView(TemplateView):
 
-    methods = ['GET']
+    methods = ['POST']
 
-    def get(self):
+    def post(self):
         return Response(status=200,
-                        response=json_util.dumps(self.controller.get_schedule(ObjectId(request.args.get('student_id'
-                                                                                                        )))))
+                        response=json_util.dumps(self.controller.get_schedule(ObjectId(request.json))))
 
 
 class SubjectView(TemplateView):
