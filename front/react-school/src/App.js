@@ -8,7 +8,8 @@ import Login from './components/Login/Login.js'
 import useToken from './components/Login/useToken';
 import Admin from './components/Admin/Admin'
 import Users from "./components/Pages/Users";
-
+import Classes from "./components/Pages/Classes"
+import Schedule from './components/Pages/Schedule';
 
 function App() {
   const { token, setToken } = useToken();
@@ -20,8 +21,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='/users' element={<Users />} />
-        <Route path='/classes' element={<Admin />} />
-        <Route path='/schedule' element={<Admin />} />
+        <Route path='/classes' element={<Classes />} />
+        <Route path='/schedule' element={<Schedule />} />
         <Route path='/subjects' element={<Admin />} />
         <Route path='/journal' element={<Admin />} />
         <Route path='/admin' element={<Admin />} />

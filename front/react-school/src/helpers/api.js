@@ -38,6 +38,21 @@ const Back = {
 
   addUser: async (user_data) => {
     return await Back.makeRequest('POST', '/user', user_data)
+  },
+
+  getClasses: async () => {
+    return await Back.makeRequest('GET', '/class')
+  },
+
+  addClass: async (class_data) => {
+    return await Back.makeRequest('POST', '/class', class_data)
+  },
+  getSchedule: async () => {
+    return await Back.makeRequest('GET', '/schedule')
+  },
+
+  addSchedule: async (schedule_data) => {
+    return await Back.makeRequest('POST', '/schedule', schedule_data)
   }
 }
 

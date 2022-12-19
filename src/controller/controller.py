@@ -29,8 +29,8 @@ class Controller:
             password.encode('utf-8')).hexdigest()}
         return self.users.find_one(user)
 
-    def create_class(self, number: int, symbol: str) -> ObjectId:
-        _class = {'number': number, 'symbol': symbol, 'students': []}
+    def create_class(self, number: int, symbol: str, students:list=[]) -> ObjectId:
+        _class = {'number': number, 'symbol': symbol, 'students': students}
         _id = self.classes.insert_one(_class)
         return _id.inserted_id
 

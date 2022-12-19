@@ -1,3 +1,6 @@
+import sys
+sys.path.append('../')
+
 from bson import ObjectId
 
 from controller.controller import Controller
