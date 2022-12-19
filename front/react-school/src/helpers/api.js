@@ -38,6 +38,20 @@ const Back = {
 
   addUser: async (user_data) => {
     return await Back.makeRequest('POST', '/user', user_data)
+  },
+  getSubjects: async () => {
+    return await Back.makeRequest('GET', '/subject')
+  },
+
+  addSubject: async (data) => {
+    return await Back.makeRequest('POST', '/subject', data)
+  },
+  getJournal: async () => {
+    return await Back.makeRequest('GET', '/journal')
+  },
+
+  addMark: async (data) => {
+    return await Back.makeRequest('POST', '/journal', data)
   }
 }
 
