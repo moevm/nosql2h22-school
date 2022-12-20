@@ -22,7 +22,6 @@ class Schedule extends Component {
         const selected = users[0];
         const data = await Back.getSchedule(users[0].value);
         console.log(selected)
-
         this.setState({
             users: users,
             selected: users[0],
@@ -150,7 +149,6 @@ class Schedule extends Component {
                             </tr>
                         </tbody>
                     </table>
-                    
                 </div>
             </>
         )
