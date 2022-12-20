@@ -1,6 +1,7 @@
 import json
 
 from bson import json_util, ObjectId
+
 from flask import request, Response
 from flask.views import View
 
@@ -9,11 +10,8 @@ from controller.models import TableName
 
 
 class TemplateView(View):
-
     methods = ['GET', 'POST']
-
     controller = Controller()
-
     def dispatch_request(self):
         if not self.user_have_access():
             return Response(status=403,
@@ -26,7 +24,7 @@ class TemplateView(View):
             return Response(status=400,
                             response=json.dumps({'error': 'Bad request'
                                                  }))
-
+        
     def __init__(self):
         self.need_auth = True
 
