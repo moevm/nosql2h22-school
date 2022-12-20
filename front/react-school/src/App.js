@@ -1,14 +1,15 @@
 import React, {
     useState
-} from 'react';
-
+}
+from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {
     BrowserRouter,
     Route,
     Routes
-} from "react-router-dom";
+}
+from "react-router-dom";
 import Main from './components/Main/Main.js'
 import Login from './components/Login/Login.js'
 import useToken from './components/Login/useToken';
@@ -18,7 +19,6 @@ import Classes from "./components/Pages/Classes"
 import Schedule from './components/Pages/Schedule';
 import Subjects from "./components/Pages/Subjects";
 import Journal from "./components/Pages/Journal";
-
 
 function App() {
     const {
@@ -31,49 +31,27 @@ function App() {
         }
         />
     }
-    return ( <
-        BrowserRouter >
-        <
-        Routes >
-        <
-        Route path = '/'
-        element = {
-            < Main / >
+    return ( < BrowserRouter > < Routes > < Route path = '/'
+        element = { < Main / >
         }
-        /> <
-        Route path = '/users'
-        element = {
-            < Users / >
+        /> < Route path = '/users'
+        element = { < Users / >
         }
-        /> <
-        Route path = '/classes'
-        element = {
-            < Classes / >
+        /> < Route path = '/classes'
+        element = { < Classes / >
         }
-        /> <
-        Route path = '/schedule'
-        element = {
-            < Schedule / >
+        /> < Route path = '/schedule'
+        element = { < Schedule / >
         }
-        /> <
-        Route path = '/subjects'
-        element = {
-            < Subjects / >
+        /> < Route path = '/subjects'
+        element = { < Subjects / >
         }
-        /> <
-        Route path = '/journal'
-        element = {
-            < Journal / >
+        /> < Route path = '/journal'
+        element = { < Journal / >
         }
-        /> <
-        Route path = '/admin'
-        element = {
-            < Admin / >
+        /> < Route path = '/admin'
+        element = { < Admin / >
         }
-        /> <
-        /Routes> <
-        /BrowserRouter>
-    );
+        /> < /Routes> < /BrowserRouter>);
 }
-
 export default App;
