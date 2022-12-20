@@ -22,7 +22,6 @@ class Classes extends Component {
 
   render() {
     console.log(this.state.data)
-
     const headers = ['_id', 'number', 'symbol', 'students']
     return (
       <>
@@ -43,7 +42,6 @@ class Classes extends Component {
             <tbody>
             {
               this.state.data.map((user) => {
-
                 let users = ""
                 if (user['students'] !== []){
                     console.log(user)
